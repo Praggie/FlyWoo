@@ -47,7 +47,8 @@ public class SplashActivity extends Activity {
         }.postDelayed(new Runnable() {
             public void run() {
                 boolean isFirst = (boolean) SP.get(context, SharedKey.isfirst, true);
-                A.goOtherActivityFinish(context, isFirst ? GuideActivity.class : MainActivity.class);
+               // A.goOtherActivityFinish(context, isFirst ? GuideActivity.class : MainActivity.class);
+                A.goOtherActivityFinish(context, MainActivity.class);
             }
         }, 1000);
     }
