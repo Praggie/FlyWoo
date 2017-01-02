@@ -288,7 +288,7 @@ public class MainVu implements Vu, SendFileListener, View.OnClickListener {
     class MainPageAdapter extends FragmentPagerAdapter {
 
         private List<Fragment> list;
-        private String tabs[] = new String[] { "应用", "音乐", "图片", "视频", "文件" };
+        private String tabs[] = new String[] { "Applications", " Music"," Pictures", " Videos", " Files" };
 
         public MainPageAdapter(FragmentManager fm, List<Fragment> list) {
             super(fm);

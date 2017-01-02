@@ -142,12 +142,12 @@ public class AlbumActivity extends Activity {
 
     private void initView() {
         imageAll = new ImageFloder();
-        imageAll.setDir("/所有图片");
+        imageAll.setDir("/ All pictures");
         currentImageFolder = imageAll;
         mDirPaths.add(imageAll);
         btn_ok = (Button) findViewById(R.id.btn_ok);
         btn_select = (Button) findViewById(R.id.btn_select);
-        btn_ok.setText("完成0/" + MAX_NUM);
+        btn_ok.setText("Completed 0/" + MAX_NUM);
         btn_ok.setEnabled(selectedPicture.size() > 0);
         gridview = (GridView) findViewById(R.id.gridview);
         adapter = new PictureAdapter();
@@ -187,7 +187,7 @@ public class AlbumActivity extends Activity {
      */
     protected void goCamare() {
         if (selectedPicture.size() + 1 > MAX_NUM) {
-            Toast.makeText(context, "最多选择" + MAX_NUM + "张", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Select up to" + MAX_NUM + "Zhang", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -279,7 +279,7 @@ public class AlbumActivity extends Activity {
                     @Override
                     public void onClick(View v) {
                         if (!v.isSelected() && selectedPicture.size() + 1 > MAX_NUM) {
-                            Toast.makeText(context, "最多选择" + MAX_NUM + "张", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, "Select up to" + MAX_NUM + "张", Toast.LENGTH_SHORT).show();
                             return;
                         }
                         if (selectedPicture.contains(item.path)) {
@@ -288,7 +288,7 @@ public class AlbumActivity extends Activity {
                             selectedPicture.add(item.path);
                         }
                         btn_ok.setEnabled(selectedPicture.size() > 0);
-                        btn_ok.setText("完成" + selectedPicture.size() + "/" + MAX_NUM);
+                        btn_ok.setText("carry out" + selectedPicture.size() + "/" + MAX_NUM);
                         v.setSelected(selectedPicture.contains(item.path));
                     }
                 });

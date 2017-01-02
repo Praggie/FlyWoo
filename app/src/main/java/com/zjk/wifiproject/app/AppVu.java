@@ -66,7 +66,7 @@ public class AppVu implements Vu {
     public void setData(Context context, List<AppEntity> list) {
         this.context = context;
         this.list = list;
-        tv_local.setText("本地应用（" + list.size() + "）");
+        tv_local.setText("Local application（" + list.size() + "）");
         this.adapter = new AppGridAdapter( context, list);
         gridView.setAdapter(adapter);
     }

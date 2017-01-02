@@ -122,10 +122,10 @@ public class MainActivity extends BasePresenterActivity<MainVu> {
         //AP热点以及创建了
         if(WifiUtils.isWifiApEnabled() && WifiUtils.getApSSID().startsWith(WifiConst.WIFI_AP_HEADER)){
             //显示AP创建的提示布局
-            T.show(context, "已经开启了热点:" + WifiUtils.getApSSID());
+            T.show(context, "Has opened a hot spot:" + WifiUtils.getApSSID());
             final ArrayList<String> ips = WifiUtils.getConnectedHotIP();
 
-            mTip.setText("已经开启了热点:" + WifiUtils.getApSSID().substring(6)+","+ips.size()+"个已连接");
+            mTip.setText("Has opened a hot spot:" + WifiUtils.getApSSID().substring(6)+","+ips.size()+"Connected");
             mTipLayout.setVisibility(View.VISIBLE);
 
             if(ips.size() == 1){
@@ -144,8 +144,8 @@ public class MainActivity extends BasePresenterActivity<MainVu> {
         //已经连接到AP热点
         else if(WifiUtils.isWifiConnect() && WifiUtils.getSSID().substring(1).startsWith(WifiConst.WIFI_AP_HEADER)){
             //显示已连接到AP热点的布局
-            T.show(context,"已经连接了热点:"+WifiUtils.getSSID()+":"+WifiUtils.getServerIPAddress());
-            mTip.setText("已经连接了热点:" + WifiUtils.getApSSID().substring(6)+":"+WifiUtils.getServerIPAddress());
+            T.show(context,"Hotspot connected:"+WifiUtils.getSSID()+":"+WifiUtils.getServerIPAddress());
+            mTip.setText("Hotspot connected:" + WifiUtils.getApSSID().substring(6)+":"+WifiUtils.getServerIPAddress());
             mTipLayout.setVisibility(View.VISIBLE);
             mTipLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -159,7 +159,7 @@ public class MainActivity extends BasePresenterActivity<MainVu> {
         }
         //其他情况就不显示提示布局
         else{
-            T.show(context,"快去创建或加入");
+            T.show(context,"Go and create or join");
             mTipLayout.setVisibility(View.GONE);
         }
 
