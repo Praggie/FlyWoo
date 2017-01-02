@@ -45,10 +45,10 @@ public class TcpService implements Runnable {
         try {
             serviceSocket = new ServerSocket(Constant.TCP_SERVER_RECEIVE_PORT);
             saveFileToDisks = new ArrayList<SaveFileToDisk>();
-            L.d(TAG, "建立监听服务器ServerSocket成功");
+            L.d(TAG, "ServerSocket establishment of monitoring server success");
         }
         catch (IOException e) {
-            L.d(TAG, "建立监听服务器ServerSocket失败");
+            L.d(TAG, "Setting up the listening server ServerSocket failed");
             e.printStackTrace();
         }
         mThread = new Thread(this);
@@ -73,7 +73,7 @@ public class TcpService implements Runnable {
     }
 
     public void setSavePath(String fileSavePath) {
-        L.d(TAG, "设置存储路径成功,路径为" + fileSavePath);
+        L.d(TAG, "Set the storage path to succeed" + fileSavePath);
         this.filePath = fileSavePath;
         // REV_FLAG=true;
     }
@@ -87,7 +87,7 @@ public class TcpService implements Runnable {
         try {
             Socket socket = serviceSocket.accept(); // 接收UDP数据报
             // socket.setSoTimeout(5000); // 设置掉线时间
-            L.d(TAG, "客户端连接成功");
+            L.d(TAG, "The client connection is successful");
 
             SaveFileToDisk fileToDisk = new SaveFileToDisk(socket, filePath);
             fileToDisk.start();
@@ -95,14 +95,14 @@ public class TcpService implements Runnable {
         }
         catch (IOException e) {
             e.printStackTrace();
-            L.d(TAG, "客户端连接失败");
+            L.d(TAG, "The client connection failed");
             SCAN_FLAG = false;
         }
     }
 
     @Override
     public void run() {
-        L.d(TAG, "TCP_Service线程开启");
+        L.d(TAG, "The TCP_Service thread is enabled");
         while (!IS_THREAD_STOP) {
             if (SCAN_FLAG) {
                 scan_recv();
@@ -157,11 +157,11 @@ public class TcpService implements Runnable {
             try {
                 input = socket.getInputStream();
                 dataInput = new DataInputStream(input);
-                L.d(TAG, "获取网络输入流成功");
+                L.d(TAG, "Get the network input stream successfully");
             }
             catch (IOException e) {
                 // TODO Auto-generated catch block
-                L.d(TAG, "获取网络输入流失败");
+                L.d(TAG, "Failed to get network input stream");
                 SCAN_RECIEVE = false;
                 e.printStackTrace();
             }
@@ -185,7 +185,7 @@ public class TcpService implements Runnable {
                 strData = strFiledata.split("!");
                 long length = Long.parseLong(strData[1]);// 文件大小
 
-                L.d(TAG, "传输文件类型:" + strData[3]);
+                L.d(TAG, "Transfer file types:" + strData[3]);
 //                fileSavePath = savePath + File.separator + strData[2] + File.separator + strData[0];
                 fileSavePath = savePath  + File.separator + strData[0];
                 fileOutputStream = new FileOutputStream(new File(fileSavePath));// 创建文件流

@@ -38,7 +38,7 @@ public class TcpClient implements Runnable {
     private TcpClient() {
         sendFileThreads = new ArrayList<SendFileThread>();
         mThread = new Thread(this);
-        L.d(TAG, "建立线程成功");
+        L.d(TAG, "Thread success");
 
     }
 
@@ -78,11 +78,11 @@ public class TcpClient implements Runnable {
 
     private TcpClient(Context context) {
         this();
-        L.d(TAG, "TCP_Client初始化完毕");
+        L.d(TAG, "TCP_Client initialization is complete");
     }
 
     public void startSend() {
-        L.d(TAG, "发送线程开启");
+        L.d(TAG, "The sending thread opens");
         IS_THREAD_STOP = false; // 使能发送标识
         if (!mThread.isAlive())
             mThread.start();
@@ -97,7 +97,7 @@ public class TcpClient implements Runnable {
     }
 
     public void sendFile(String filePath, String target_IP, Message.CONTENT_TYPE type) {
-        Logger.i("发送文件："+filePath+",SEND_FLAG:"+SEND_FLAG);
+        Logger.i("Send File："+filePath+",SEND_FLAG:"+SEND_FLAG);
         SendFileThread sendFileThread = new SendFileThread(target_IP, filePath, type);
         while (SEND_FLAG == true)
             ;
@@ -110,7 +110,7 @@ public class TcpClient implements Runnable {
     @Override
     public void run() {
         
-        L.d(TAG, "TCP_Client初始化");
+        L.d(TAG, "TCP_Client Initialization");
 
         while (!IS_THREAD_STOP) {
             if (SEND_FLAG) {
@@ -196,7 +196,7 @@ public class TcpClient implements Runnable {
                     }
                     dataOutput.flush();
                 }
-                L.d(TAG, fs.filePath + "发送完毕");
+                L.d(TAG, fs.filePath + "Send finished");
 
                 output.close();
                 dataOutput.close();
@@ -237,12 +237,12 @@ public class TcpClient implements Runnable {
             }
             catch (UnknownHostException e) {
                 // TODO Auto-generated catch block
-                L.d(TAG, "建立客户端socket失败");
+                L.d(TAG, "The creation of the client socket failed");
                 SEND_FLAG = false;
                 e.printStackTrace();
             }
             catch (IOException e) {
-                L.d(TAG, "建立客户端socket失败");
+                L.d(TAG, "The creation of the client socket failed");
                 SEND_FLAG = false;
                 e.printStackTrace();
             }
@@ -253,7 +253,7 @@ public class TcpClient implements Runnable {
 
         @Override
         public void run() {
-            L.d(TAG, "SendFileThread初始化");
+            L.d(TAG, "SendFileThreadinitialization");
             if (SEND_FLAG) {
                 sendFile();
             }
