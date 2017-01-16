@@ -565,6 +565,7 @@ public class CreateConnectionVu implements Vu, OnClickListener, UDPMessageListen
                         //给handler发一个连接成功的消息
                         Message.obtain(mHandler, WifiConst.WiFiConnectSuccess, hostName).sendToTarget();
 //                        mHandler.sendEmptyMessage(WifiConst.WiFiConnectSuccess);
+
                     }
                 }, new Date(), 1000);
             }

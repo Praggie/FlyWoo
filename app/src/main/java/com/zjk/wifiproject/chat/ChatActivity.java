@@ -242,7 +242,7 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener, 
 
     @Override
     public void processMessage(IPMSGProtocol pMsg) {
-        Logger.i("ChatActivity处理消息消息：" + GsonUtils.beanToJson(pMsg));
+        Logger.i("ChatActivity Processes message messages：" + GsonUtils.beanToJson(pMsg));
         android.os.Message msg = android.os.Message.obtain();
         msg.what = pMsg.commandNo;
         msg.obj = pMsg;
@@ -648,7 +648,7 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener, 
             case R.id.btn_chat_send:// 发送文本
                 final String msg = edit_user_comment.getText().toString();
                 if (msg.equals("")) {
-                    T.show(context, "请输入发送消息!");
+                    T.show(context, "Please enter your message!");
                     return;
                 }
                 sendTextMessage(msg);

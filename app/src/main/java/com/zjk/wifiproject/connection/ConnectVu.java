@@ -61,8 +61,8 @@ public class ConnectVu implements Vu, OnClickListener {
             boolean connFlag = WifiUtils.connectWifi("ZChat_google_608", WifiConst.WIFI_AP_PASSWORD,
                     WifiCipherType.WIFICIPHER_WPA);
             if (!connFlag) {
-                T.show(context, "已连接");
-                mConnectButton.setText("已连接");
+                T.show(context, "connected");
+                mConnectButton.setText("connected");
 //                new Thread(new ConnectAPThread()).start();
                 String ip = WifiUtils.getServerIPAddress();
                 Logger.i("ip:"+ip);
