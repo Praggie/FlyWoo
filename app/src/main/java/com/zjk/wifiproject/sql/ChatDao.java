@@ -152,7 +152,7 @@ public class ChatDao {
         // make sure to close the cursor
         cursor.close();
         close();
-        L.i("查询到本地的任务个数：" + taskList.size());
+        L.i("Query the number of tasks to the local：" + taskList.size());
         return taskList;
     }
 

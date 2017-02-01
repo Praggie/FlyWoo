@@ -12,6 +12,6 @@
         android:id="@+id/btn_creat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="创建热点" />
+        android:text="Create a hotspot" />
 
 </RelativeLayout>

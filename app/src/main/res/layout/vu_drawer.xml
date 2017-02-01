@@ -32,7 +32,7 @@
 
     <TextView
         android:background="#ddd"
-        android:text="传输历史"
+        android:text="Transmission history"
         android:textSize="16sp"
         android:gravity="center"
         android:layout_width="match_parent"

@@ -11,7 +11,7 @@
         android:background="#EDEDED"
         android:gravity="center_vertical|left"
         android:paddingLeft="16dp"
-        android:text="本地应用" />
+        android:text="Local application" />
 
     <GridView
         android:id="@+id/gridview"

@@ -37,6 +37,7 @@ import com.zjk.wifiproject.socket.udp.IPMSGConst;
 import com.zjk.wifiproject.socket.udp.IPMSGProtocol;
 import com.zjk.wifiproject.socket.udp.UDPMessageListener;
 import com.zjk.wifiproject.util.A;
+import com.zjk.wifiproject.util.DateUtils;
 import com.zjk.wifiproject.util.L;
 import com.zjk.wifiproject.util.PixelUtil;
 import com.zjk.wifiproject.util.TextUtils;
@@ -176,7 +177,7 @@ public class CreateConnectionVu implements Vu, OnClickListener, UDPMessageListen
             WifiUtils.closeWifi();
         }
         localHostName = getLocalHostName();
-        // 创建热点
+        // Create a hotspot
         WifiUtils.startWifiAp(WifiConst.WIFI_AP_HEADER + localHostName, WifiConst.WIFI_AP_PASSWORD,
                 mHandler);
     }
@@ -588,7 +589,7 @@ public class CreateConnectionVu implements Vu, OnClickListener, UDPMessageListen
                     Logger.i("ip=" + serverIPaddres);
                     if (isValidated()) { //已连接上
 
-                        mStatus.setText("连接成功");
+                        mStatus.setText("connection succeeded");
                         //取消发送成功消息的定时器
                         cennectTimer.cancel();
 
@@ -614,17 +615,28 @@ public class CreateConnectionVu implements Vu, OnClickListener, UDPMessageListen
 
                 //------------------------处理UDP指令
                 //--------------------服务端
-                case IPMSGConst.NO_CONNECT_SUCCESS: // 客户端连接成功
+                case IPMSGConst.NO_CONNECT_SUCCESS: // The client connection is successful
                     IPMSGProtocol command = (IPMSGProtocol) msg.obj;
 
                     Users user = new Users();
                     user.setIpaddress(command.senderIP);
                     user.setDevice(getPhoneModel());
                     goChatActivity(user);
+
+                    IPMSGProtocol command1 = new IPMSGProtocol();
+
+                    command1.senderIP = WifiUtils.getLocalIPAddress();
+                    command1.targetIP = command.senderIP;
+                    command1.commandNo = IPMSGConst.NO_SEND_TXT;
+                    command1.packetNo = new Date().getTime() + "";
+                    String nowtime = DateUtils.getNowtime();
+                    command1.addObject = new com.zjk.wifiproject.entity.Message("", nowtime, "Message from server for chotu", com.zjk.wifiproject.entity.Message.CONTENT_TYPE.TEXT);
+                    mUDPListener.sendUDPdata(command1);
+
                     break;
 
                 //-------------------客户端
-                case IPMSGConst.AN_CONNECT_SUCCESS: // 服务器确认连接成功
+                case IPMSGConst.AN_CONNECT_SUCCESS: // The server confirms the connection is successful
                     Users user2 = new Users();
                     user2.setDevice(getPhoneModel());
                     user2.setIpaddress(serverIPaddres);
